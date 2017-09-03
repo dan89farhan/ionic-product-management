@@ -1,3 +1,14 @@
 page-home {
-
+    .btnLogin {
+        position: relative;
+        left: 20%;
+        display: inline-block;
+    }
+    .btnLogReg {
+        top: 40%;
+        left: 20%;
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+    }
 }
