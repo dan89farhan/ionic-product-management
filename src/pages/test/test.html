@@ -14,34 +14,53 @@
 
 
 <ion-content padding>
-    <form [formGroup] = 'testFormGroup'>
-        <ion-list no-lines>
-  
-          <ion-item>
-            <ion-label floating>Email</ion-label>
-            <ion-input  type="email" formControlName = 'emailCntl' required ></ion-input>
-            
-            
-          </ion-item>
-          <p ion-text [hidden] = '(testFormGroup.controls.emailCntl.touched &&  testFormGroup.controls.emailCntl.invalid)' color = 'danger' padding-left >Email is required</p>
-          <!-- <div [class.invalid]="!testFormGroup.controls.userName.valid && (testFormGroup.controls.userName.dirty || submitAttempt)"></div> -->
-          
-  
-          <ion-item>
-            <ion-label floating>Password</ion-label>
-            <ion-input formControlName = 'password' type="password" required></ion-input>
-          </ion-item>
-  
-          
-  
-          <ion-item hidden>
-            <ion-input type="text"></ion-input>
-          </ion-item>
-  
-        </ion-list>
-        <div padding text-center>
-          <button ion-button (click) = "onLogin(loginForm)" type="submit" block >Sign In</button>
-        </div>
-      </form>
+  <div id="chatMessages">
+    <div *ngFor="let message of messages" [class]="message.specialMessage ? 'message special' : 'message'">
+      <div [class]="message.username == username ? 'innerMessage messageLeft' : 'innerMessage messageRight'">
+        <div class="username">{{ message.username }}</div>
+        <div class="messageContent">{{ message.message }}</div>
+      </div>
+    </div>
+  </div>
+  <ion-card *ngFor="let message of messages">
 
+    <ion-item>
+      <ion-avatar item-start>
+        <img [src]="message.img">
+      </ion-avatar>
+      <h2>{{ message.header }}</h2>
+      <p>{{ message.price }}</p>
+    </ion-item>
+
+    <img [src]="message.img">
+
+    <ion-card-content>
+      <p>{{ message.details }}</p>
+    </ion-card-content>
+
+
+    <ion-grid no-padding>
+      <ion-row center>
+        <ion-col col-6 class="col-8px">
+
+          <span>Quantity:</span>
+          <button class='padd-left0px padd-right0px marg-top0px top-2px' ion-button icon-left clear small (click)='increament()'>
+                  <ion-icon name="add"></ion-icon>
+                  
+                </button>
+          <span>{{ quantity }}</span>
+          <button class='marg-top0px top-2px' ion-button icon-left clear small (click)='decrement()'>
+                  <ion-icon name="remove" paddinf-left></ion-icon>
+                </button>
+
+
+        </ion-col>
+        <ion-col col-6>
+          <ion-buttons end>
+            <button ion-button block>Next</button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>

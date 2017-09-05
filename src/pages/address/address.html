@@ -1,0 +1,81 @@
+<!--
+  Generated template for the AddressPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>address</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]='addForm' name="addForm">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Address</ion-label>
+        <ion-input formControlName='ctrladdress' required type="text" value='a'></ion-input>
+      </ion-item>
+
+
+      <div padding-left ion-text class='form-text error' color='danger' *ngIf="(!((addForm.controls.ctrladdress.touched && addForm.controls.ctrladdress.valid) || submitted == false))">
+        Please enter your Address
+      </div>
+
+      <ion-item>
+        <ion-label floating>City</ion-label>
+        <ion-input formControlName='ctrlcity' required type="text" value='a'></ion-input>
+      </ion-item>
+
+      <div padding-left ion-text class='form-text error' color='danger' *ngIf="( !((addForm.controls.ctrlcity.touched && addForm.controls.ctrlcity.valid) || submitted == false))">
+        Please enter your City Name
+      </div>
+
+      <ion-item>
+        <ion-label floating>State</ion-label>
+        <ion-input formControlName='ctrlstate' required type="text" value='asdfgh'></ion-input>
+      </ion-item>
+
+      <div padding-left ion-text class='form-text error' color='danger' *ngIf="(!((addForm.controls.ctrlstate.touched && addForm.controls.ctrlstate.valid) || submitted == false))">
+        Please Enter State Name
+      </div>
+
+
+
+      <!-- <p>7303651712 {{ addForm.hasError[mismatchedstates] }}</p> -->
+
+      <ion-item>
+        <ion-label floating>Zip Code</ion-label>
+        <ion-input formControlName='ctrlzipcode' required type="number" value='123456'></ion-input>
+      </ion-item>
+
+      <div padding-left ion-text class='form-text error' color='danger' *ngIf="(!((addForm.controls.ctrlzipcode.touched && addForm.controls.ctrlzipcode.valid) || submitted == false))">
+        Zip code is invalid
+      </div>
+
+
+      <ion-item padding-left>
+        <ion-label floating>Country</ion-label>
+        <ion-input formControlName='ctrlcountry' required type="text" value='1234567890'></ion-input>
+      </ion-item>
+
+      <div padding-left ion-text class='form-text error' color='danger' *ngIf="(!((addForm.controls.ctrlcountry.touched && addForm.controls.ctrlcountry.valid) || submitted == false))">
+        Please enter Country Name
+      </div>
+
+
+
+      <div class="text-center mt-20">
+        <button ion-button icon-start (click)='onAddress(addForm)' type="submit" block>
+            <ion-icon name="person-add"></ion-icon>
+            Sign up
+          </button>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

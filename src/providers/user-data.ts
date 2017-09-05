@@ -34,4 +34,8 @@ export class UserData {
             return value;
         });
     };
+
+    setAddress(){
+        
+    }
 }

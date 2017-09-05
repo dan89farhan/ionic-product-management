@@ -17,15 +17,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class TestPage {
 
-  testFormGroup: FormGroup;
-
-  submitted: boolean = false;
+  messages:object[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
-    this.testFormGroup = formBuilder.group({
-      emailCntl: ['', Validators.compose([Validators.email, Validators.required ])],
-      password: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])]
-    })
+    
   }
 
   ionViewDidLoad() {

@@ -1,0 +1,26 @@
+page-products {
+    .center{
+        text-align: center;
+    }
+    img {
+        height: fit-content;
+    }
+    ion-row.row {
+        border: 1px solid cornflowerblue;
+    }
+    .padd-left0px{
+        padding-left: 4px;
+    }
+    .padd-right0px{
+        padding-right: 0px;
+    }
+    .col-8px{
+        margin-top: 8px;
+    }
+    .marg-top0px{
+        margin-top: 0px;
+    }
+    .top-2px{
+        top: -2px;
+    }
+}

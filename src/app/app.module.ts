@@ -1,3 +1,7 @@
+import { AddressData } from './../providers/address-data';
+import { AddressPage } from './../pages/address/address';
+import { ProductData } from './../providers/product-data';
+import { ProductsPage } from './../pages/products/products';
 import { UserData } from './../providers/user-data';
 import { TestPage } from './../pages/test/test';
 import { RegisterPage } from './../pages/register/register';
@@ -19,7 +23,9 @@ import { HomePage } from '../pages/home/home';
     HomePage,
     LoginPage,
     RegisterPage,
-    TestPage
+    TestPage,
+    ProductsPage,
+    AddressPage
   ],
   imports: [
     BrowserModule,
@@ -32,8 +38,14 @@ import { HomePage } from '../pages/home/home';
           component: RegisterPage, name: 'RegisterPage', segment: 'register-page'
         },
         {
-          component: TestPage, name: 'TestPage', segment:'testPage'
+          component: TestPage, name: 'TestPage', segment:'test-page'
         },
+        {
+          component: ProductsPage, name: 'ProductPage', segment: 'product-page'
+        },
+        {
+          component: AddressPage, name: 'AddressPage', segment: 'address-page'
+        }
       ]
     }),
     IonicStorageModule.forRoot()
@@ -44,13 +56,17 @@ import { HomePage } from '../pages/home/home';
     HomePage,
     LoginPage,
     RegisterPage,
-    TestPage
+    TestPage,
+    ProductsPage,
+    AddressPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserData
+    UserData,
+    ProductData,
+    AddressData
   ]
 })
 export class AppModule {}
