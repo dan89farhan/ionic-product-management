@@ -1,3 +1,5 @@
+import { ReportData } from './../providers/report-data';
+import { ReportPage } from './../pages/report/report';
 import { AddressData } from './../providers/address-data';
 import { AddressPage } from './../pages/address/address';
 import { ProductData } from './../providers/product-data';
@@ -25,14 +27,15 @@ import { HomePage } from '../pages/home/home';
     RegisterPage,
     TestPage,
     ProductsPage,
-    AddressPage
+    AddressPage,
+    ReportPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {}, {
       links:[
         {
-          component: LoginPage, name: 'LoginPage', segment: 'loginPage'
+          component: LoginPage, name: 'LoginPage', segment: 'login-page'
         },
         {
           component: RegisterPage, name: 'RegisterPage', segment: 'register-page'
@@ -45,6 +48,9 @@ import { HomePage } from '../pages/home/home';
         },
         {
           component: AddressPage, name: 'AddressPage', segment: 'address-page'
+        },
+        {
+          component: ReportPage, name: 'ReportPage', segment: 'report-page'
         }
       ]
     }),
@@ -58,7 +64,8 @@ import { HomePage } from '../pages/home/home';
     RegisterPage,
     TestPage,
     ProductsPage,
-    AddressPage
+    AddressPage,
+    ReportPage
   ],
   providers: [
     StatusBar,
@@ -66,7 +73,8 @@ import { HomePage } from '../pages/home/home';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserData,
     ProductData,
-    AddressData
+    AddressData,
+    ReportData
   ]
 })
 export class AppModule {}
