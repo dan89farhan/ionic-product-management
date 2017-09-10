@@ -2,6 +2,7 @@ import { AddressPage } from './../address/address';
 import { ProductData } from './../../providers/product-data';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFireDatabase} from 'angularfire2/database';
 
 /**
  * Generated class for the ProductsPage page.
@@ -17,26 +18,41 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProductsPage {
 
-  //productDetails: ProductData;
-  messages: object[] = [];
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams, public productDetails: ProductData) {
-    this.messages = this.productDetails.messages;
-    //console.log(this.messages);
+  //productDetails: productDatas;
+  productDatas: object[] = [];
+  _productSubsciption;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public productDetails: ProductData, public db: AngularFireDatabase ) {
+    this._productSubsciption = this.db.list('/product').subscribe((data) => {
+      this.productDatas = data;
+      console.log('data is '+ this.productDatas);
+    });
+
+    
+    //this.productDatas = this.productDetails.productData;
+    //console.log(this.productDatas);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductsPage');
+    // this.db.list('/product').push({
+    //   username: 'farhan',
+    //   message: 'do something'
+    // }).then(() => {
+
+    // }).catch(() => {
+
+    // });
   }
 
   increament(index){
-    //this.messages[index][quantity];
-    this.messages[index]['quantity']++;
+    //this.productDatas[index][quantity];
+    this.productDatas[index]['quantity']++;
     console.log();
   }
 
   decrement(index){
-    (this.messages[index]['quantity']>0) ? this.messages[index]['quantity']--: this.messages[index]['quantity'];
+    (this.productDatas[index]['quantity']>0) ? this.productDatas[index]['quantity']--: this.productDatas[index]['quantity'];
     
   }
   goAddress(index){

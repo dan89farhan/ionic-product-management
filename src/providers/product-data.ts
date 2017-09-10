@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ProductData {
-    messages: object[] = [];
+    productData: object[] = [];
     constructor() {
-        this.messages = [
+        this.productData = [
             {
                 img: '../../assets/img/1l.png',
                 header: 'Bisleri 1 Litre',
@@ -57,6 +57,6 @@ export class ProductData {
                 quantity: 0,
             }
         ];
-        //console.log('object is ', this.messages[0]['img']);
+        //console.log('object is ', this.productData[0]['img']);
     }
 }

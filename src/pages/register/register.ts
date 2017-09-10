@@ -88,7 +88,7 @@ export class RegisterPage {
       this.register.firstName = this.regForm.controls['ctrlfirstName'].value;
       this.register.lastName = this.regForm.controls['ctrllastName'].value;
       this.register.email = this.regForm.controls['ctrlemail'].value;
-      this.register.password = this.regForm.controls['ctrlemail'].value;
+      this.register.password = this.regForm.controls['ctrlpassword'].value;
       this.register.mobile = this.regForm.controls['ctrlmobile'].value;
       
       this.fire.auth.createUserWithEmailAndPassword(this.register.email, this.register.password).then((data) => {

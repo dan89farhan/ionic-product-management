@@ -1,3 +1,4 @@
+import { ProductsPage } from './../pages/products/products';
 import { UserData } from './../providers/user-data';
 import { HomePage } from './../pages/home/home';
 
@@ -21,16 +22,20 @@ export class MyApp {
 
     this.userData.checkHasSeenTutorial().then((value )=>{
       if (value){
-        console.log("the value of hasSeenTutorial is " +  value);
-        this.rootPage = LoginPage;
+        this.userData.checkHasLogin().then((data) => {
+          if(data){
+            this.rootPage = ProductsPage;
+          }
+          else{
+            this.rootPage = LoginPage;
+          }
+        });
+        
       }
       else{
-        console.log("in constructor "+ value);
         this.rootPage = HomePage;
       }
     });
-    //  return value;
-    //});
     
     
     

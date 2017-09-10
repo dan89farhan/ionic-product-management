@@ -22,6 +22,7 @@ import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 const fireBaseAuth = {
   apiKey: "AIzaSyC3eJ2X2_UTYkxaopXWb9VDTPyNDlI7t7Y",
@@ -45,6 +46,7 @@ const fireBaseAuth = {
   ],
   imports: [
     BrowserModule,
+    AngularFireDatabaseModule,
     IonicModule.forRoot(MyApp, {}, {
       links:[
         {

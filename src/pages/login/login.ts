@@ -1,3 +1,4 @@
+import { UserData } from './../../providers/user-data';
 import { ProductsPage } from './../products/products';
 import { RegisterPage } from './../register/register';
 import { UserOptions } from './../../interfaces/user-options';
@@ -24,7 +25,7 @@ export class LoginPage {
 
   login: UserOptions = { mobile:'', password:'', email: '', firstName: '', lastName: ''};
   submitted = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fire: AngularFireAuth, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fire: AngularFireAuth, public alertCtrl: AlertController, private userData: UserData) {
   }
 
   ionViewDidLoad() {
@@ -48,6 +49,7 @@ export class LoginPage {
       
       this.fire.auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((data) => {
         this.navCtrl.setRoot(ProductsPage);
+        this.userData.login();
       }).catch((error) => {
         this.showAlert("It seems that you don't have account to use this Application\nPlease Register first");
         console.log('Got an '+error);

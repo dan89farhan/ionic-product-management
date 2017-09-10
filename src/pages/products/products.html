@@ -24,20 +24,20 @@
 
 
 <ion-content padding>
-  <ion-card *ngFor="let message of messages; let i = index ">
+  <ion-card *ngFor="let productData of productDatas; let i = index ">
 
     <ion-item>
       <ion-avatar item-start>
-        <img [src]="message.img">
+        <img [src]="productData.img">
       </ion-avatar>
-      <h2>{{ message.header }}</h2>
-      <p>{{ message.price }}</p>
+      <h2>{{ productData.header }}</h2>
+      <p>{{ productData.price }}</p>
     </ion-item>
 
-    <img [src]="message.img">
+    <img [src]="productData.img">
 
     <ion-card-content>
-      <p>{{ message.details }}</p>
+      <p>{{ productData.details }}</p>
     </ion-card-content>
 
 
@@ -50,7 +50,7 @@
             <ion-icon name="add"></ion-icon>
             
           </button>
-          <span>{{ message['quantity'] }}</span>
+          <span>{{ productData['quantity'] }}</span>
           <button class='marg-top0px top-2px' ion-button icon-left clear small (click)='decrement(i)'>
             <ion-icon name="remove" paddinf-left></ion-icon>
           </button>

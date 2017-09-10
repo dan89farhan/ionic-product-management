@@ -15,9 +15,8 @@ export class UserData {
 
     }
 
-    login(email: string): void {
+    login(): void {
         this.storage.set(this.HAS_LOGGED_IN, true);
-        this.setemail(email);
         //this.events.publish('user:login');
     };
 
@@ -52,6 +51,12 @@ export class UserData {
     checkHasSeenTutorial() {
         return this.storage.get(this.HAS_SEEN_TUTORIAL).then((value) => {
             console.log('in checkHasSeenTutorial is '+ value);
+            return value;
+        });
+    }
+
+    checkHasLogin(){
+        return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
             return value;
         });
     }
