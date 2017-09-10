@@ -1,5 +1,7 @@
-import { RegisterPage } from './../pages/register/register';
-//import { LoginPage } from './../pages/login/login';
+import { UserData } from './../providers/user-data';
+import { HomePage } from './../pages/home/home';
+
+import { LoginPage } from './../pages/login/login';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -13,15 +15,34 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = RegisterPage;
+  rootPage: any;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public userData: UserData) {
+
+    this.userData.checkHasSeenTutorial().then((value )=>{
+      if (value){
+        console.log("the value of hasSeenTutorial is " +  value);
+        this.rootPage = LoginPage;
+      }
+      else{
+        console.log("in constructor "+ value);
+        this.rootPage = HomePage;
+      }
     });
+    //  return value;
+    //});
+    
+    
+    
+
+      platform.ready().then(() => {
+        // Okay, so the platform is ready and our plugins are available.
+        // Here you can do any higher level native things you might need.
+        statusBar.styleDefault();
+        splashScreen.hide();
+      });
+
+      //console.log(val);
   }
 }
 

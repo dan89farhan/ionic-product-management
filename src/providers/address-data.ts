@@ -37,7 +37,7 @@ export class AddressData{
             return value === true;
         });
     }
-    getAddressDate(){
+    getAddressData(){
         return this.storage.get('addressStrored').then((value) => {
             //this.addressOptions = JSON.parse(value);
             return value;

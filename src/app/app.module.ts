@@ -19,6 +19,19 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+
+const fireBaseAuth = {
+  apiKey: "AIzaSyC3eJ2X2_UTYkxaopXWb9VDTPyNDlI7t7Y",
+  authDomain: "productmanagement-78166.firebaseapp.com",
+  databaseURL: "https://productmanagement-78166.firebaseio.com",
+  projectId: "productmanagement-78166",
+  storageBucket: "productmanagement-78166.appspot.com",
+  messagingSenderId: "929512610217"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,6 +47,9 @@ import { HomePage } from '../pages/home/home';
     BrowserModule,
     IonicModule.forRoot(MyApp, {}, {
       links:[
+        {
+          component: HomePage, name: 'HomePage', segment: 'home-page'
+        },
         {
           component: LoginPage, name: 'LoginPage', segment: 'login-page'
         },
@@ -54,7 +70,9 @@ import { HomePage } from '../pages/home/home';
         }
       ]
     }),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(fireBaseAuth),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

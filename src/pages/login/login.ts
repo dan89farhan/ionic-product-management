@@ -1,9 +1,12 @@
+import { ProductsPage } from './../products/products';
 import { RegisterPage } from './../register/register';
 import { UserOptions } from './../../interfaces/user-options';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { NgForm } from '@angular/forms';
+
+import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
  * Generated class for the LoginPage page.
@@ -19,9 +22,9 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginPage {
 
-  login: UserOptions = { username:'', password:'', email: '', firstName: '', lastName: ''};
+  login: UserOptions = { mobile:'', password:'', email: '', firstName: '', lastName: ''};
   submitted = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fire: AngularFireAuth, public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -29,11 +32,30 @@ export class LoginPage {
   }
 
 
+  showAlert(alertMssg) {
+    let alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle: alertMssg,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   onLogin(form: NgForm){
     console.log("in onlogin");
     this.submitted = true;
     if(form.valid){
-      this.navCtrl.push(RegisterPage);
+      
+      this.fire.auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((data) => {
+        this.navCtrl.setRoot(ProductsPage);
+      }).catch((error) => {
+        this.showAlert("It seems that you don't have account to use this Application\nPlease Register first");
+        console.log('Got an '+error);
+      });
     }
+  }
+
+  goTORegisterPage(){
+    this.navCtrl.push(RegisterPage);
   }
 }

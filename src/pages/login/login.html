@@ -23,20 +23,20 @@
       <ion-list no-lines>
 
         <ion-item>
-          <ion-label floating>Username</ion-label>
-          <ion-input [(ngModel)] = "login.username" name="username" #username = 'ngModel' type="text" required></ion-input>
+          <ion-label floating>Email</ion-label>
+          <ion-input [(ngModel)]="login.email" name="email" #email='ngModel' type="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" required value = "abc@aaa.ccc" ></ion-input>
         </ion-item>
 
-        <p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>
-          Username is required
+        <p ion-text [hidden]="email.valid || submitted == false" color="danger" padding-left>
+          email is required
         </p>
 
         <ion-item>
           <ion-label floating>Password</ion-label>
-          <ion-input [(ngModel)] = 'login.password' name = 'password' #password = 'ngModel' type="password" required></ion-input>
+          <ion-input [(ngModel)]='login.password' name='password' #password='ngModel' type="password" required></ion-input>
         </ion-item>
 
-        <p ion-text [hidden] = 'password.valid || submitted == false' color = 'danger' padding-left>
+        <p ion-text [hidden]='password.valid || submitted == false' color='danger' padding-left>
           Password is required
         </p>
 
@@ -46,9 +46,13 @@
 
       </ion-list>
       <div padding text-center>
-        <button ion-button (click) = "onLogin(loginForm)" type="submit" block >Sign In</button>
+        <button ion-button (click)="onLogin(loginForm)" type="submit" block>Sign In</button>
       </div>
     </form>
-
+    <div text-center>
+      <button ion-button color="secondary" clear (click) = 'goTORegisterPage()' >Not a member? Sign up Now.</button>
+    </div>
   </div>
+
+
 </ion-content>

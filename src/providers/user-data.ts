@@ -1,3 +1,4 @@
+import { UserOptions } from './../interfaces/user-options';
 
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
@@ -7,35 +8,51 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserData {
     HAS_LOGGED_IN = 'hasLoggedIn';
-
+    HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
+    USER_DETAILS = 'userDetails';
+    userDetails: UserOptions = {mobile: '', password: '', email: '', firstName: '', lastName: '' };
     constructor(public events: Events, public storage: Storage) {
 
     }
 
-    login(username: string): void {
+    login(email: string): void {
         this.storage.set(this.HAS_LOGGED_IN, true);
-        this.setUsername(username);
-        this.events.publish('user:login');
+        this.setemail(email);
+        //this.events.publish('user:login');
     };
 
 
-    setUsername(username: string): void {
-        this.storage.set('username', username);
+    setemail(email: string): void {
+        this.storage.set('email', email);
     };
 
-    signup(username: string): void {
+    setUserDetails(userOption: UserOptions){
+        this.storage.set(this.USER_DETAILS, userOption);
+    }
+
+    signup(userOption: UserOptions): void {
+        console.log(userOption.email+' this is email');
         this.storage.set(this.HAS_LOGGED_IN, true);
-        this.setUsername(username);
-        this.events.publish('user:signup');
+        
+        
+        this.setUserDetails(userOption);
+        //this.events.publish('user:signup');
     };
 
-    getUsername(): Promise<string> {
-        return this.storage.get('username').then((value) => {
+    getemail(): Promise<string> {
+        return this.storage.get('email').then((value) => {
             return value;
         });
     };
 
-    setAddress(){
-        
+    hasSeenTutorial(){
+        this.storage.set(this.HAS_SEEN_TUTORIAL, true);
+    }
+
+    checkHasSeenTutorial() {
+        return this.storage.get(this.HAS_SEEN_TUTORIAL).then((value) => {
+            console.log('in checkHasSeenTutorial is '+ value);
+            return value;
+        });
     }
 }

@@ -1,5 +1,5 @@
 export interface UserOptions {
-    username: string,
+    mobile: string,
     password: string,
     firstName: string,
     lastName: string,

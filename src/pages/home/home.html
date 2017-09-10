@@ -1,24 +1,28 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="startApp()" color="primary">Skip</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <div class="btnLogReg">
-    <div class="btnLogin">
-      <button ion-button round>
-        Login
+  <ion-slides>
+    <ion-slide *ngFor="let imgSrc of imgSrcs; let i = index" pager #slides>
+      <img [src]="imgSrc" [alt]="imgDec" />
+      <p>{{ imgDescs[i] }}</p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="../../assets/img/Slide/ica-slidebox-img-4.png" />
+      <h2>Ready to Play?</h2>
+      <button ion-button icon-end large clear (click)="startApp()">
+          Continue
+        <ion-icon name="arrow-forward"></ion-icon>
       </button>
-    </div>
+    </ion-slide>
+  </ion-slides>
 
-
-    <button ion-button round>
-    Register First Time
-  </button>
-  </div>
 
 </ion-content>

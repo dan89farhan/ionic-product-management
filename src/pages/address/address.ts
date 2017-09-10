@@ -64,7 +64,7 @@ export class AddressPage {
       this.addressDate.setAddress(address, city, state, zipcode, country);
       console.log('successful');
 
-      console.log('print the data ' + this.addressDate.getAddressDate());
+      console.log('print the data ' + this.addressDate.getAddressData());
 
 
     }
