@@ -1,3 +1,4 @@
+import { ProfilePage } from './../pages/profile/profile';
 import { ReportData } from './../providers/report-data';
 import { ReportPage } from './../pages/report/report';
 import { AddressData } from './../providers/address-data';
@@ -42,7 +43,8 @@ const fireBaseAuth = {
     TestPage,
     ProductsPage,
     AddressPage,
-    ReportPage
+    ReportPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,9 @@ const fireBaseAuth = {
         },
         {
           component: ReportPage, name: 'ReportPage', segment: 'report-page'
+        },
+        {
+          component: ProductsPage, name: 'ProfilePage', segment: 'profile-page'
         }
       ]
     }),
@@ -85,7 +90,8 @@ const fireBaseAuth = {
     TestPage,
     ProductsPage,
     AddressPage,
-    ReportPage
+    ReportPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

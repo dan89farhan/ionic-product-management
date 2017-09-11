@@ -16,7 +16,7 @@ export class HomePage {
 
   @ViewChild('slides') slides: Slides;
 
-  readonly path: string = '../../assets/img/Slide/';
+  readonly path: string = 'assets/img/Slide/';
   constructor(public navCtrl: NavController, public userData: UserData) {
     this.imgSrcs = [this.path+"bisleri_pop1.png", this.path+"bisleri-products.png", this.path+"soda.png", this.path+"vedica.png" ];
     this.imgDescs = [

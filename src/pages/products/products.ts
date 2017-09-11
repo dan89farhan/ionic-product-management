@@ -1,3 +1,5 @@
+import { ProfilePage } from './../profile/profile';
+import { ReportPage } from './../report/report';
 import { AddressPage } from './../address/address';
 import { ProductData } from './../../providers/product-data';
 import { Component } from '@angular/core';
@@ -35,18 +37,9 @@ export class ProductsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductsPage');
-    // this.db.list('/product').push({
-    //   username: 'farhan',
-    //   message: 'do something'
-    // }).then(() => {
-
-    // }).catch(() => {
-
-    // });
   }
 
   increament(index){
-    //this.productDatas[index][quantity];
     this.productDatas[index]['quantity']++;
     console.log();
   }
@@ -58,6 +51,13 @@ export class ProductsPage {
   goAddress(index){
     console.log(index);
     this.navCtrl.push(AddressPage, index);
+  }
+
+  showReport(){
+    this.navCtrl.push(ReportPage);
+  }
+  showProfile(){
+    this.navCtrl.push(ProfilePage);
   }
  
 }
