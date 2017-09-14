@@ -1,3 +1,4 @@
+import { AngularFireDatabase } from 'angularfire2/database';
 import { ProductsPage } from './../products/products';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { UserData } from './../../providers/user-data';
@@ -27,7 +28,7 @@ export class RegisterPage {
 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public userData: UserData, private fire: AngularFireAuth, public alertCtrl:AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public userData: UserData, private fire: AngularFireAuth, public alertCtrl: AlertController, public db: AngularFireDatabase) {
     this.regForm = formBuilder.group({
       ctrlfirstName: ['', Validators.required],
       ctrllastName: ['', Validators.required],
@@ -45,7 +46,7 @@ export class RegisterPage {
     }
       // , {validator: this.matchingPasswords('ctrlpassword', 'ctrlcpassword')}
     );
-    
+
   }
 
   matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
@@ -87,21 +88,46 @@ export class RegisterPage {
 
       this.register.firstName = this.regForm.controls['ctrlfirstName'].value;
       this.register.lastName = this.regForm.controls['ctrllastName'].value;
+      
       this.register.email = this.regForm.controls['ctrlemail'].value;
+      
       this.register.password = this.regForm.controls['ctrlpassword'].value;
       this.register.mobile = this.regForm.controls['ctrlmobile'].value;
+
       
+
       this.fire.auth.createUserWithEmailAndPassword(this.register.email, this.register.password).then((data) => {
-        
-        this.userData.signup(this.register);
+
+        this.userData.signup(this.register.email);
+
+        let email = this.register.email;
+        email = email.replace('.', '_');
+        this.db.object('/userInfo/'+email ).set({
+          
+
+          firstName: this.register.firstName,
+          lastName: this.register.lastName,
+          // email: this.register.email,
+          password: this.register.password,
+          mobile: this.register.mobile
+
+
+
+        }).then(() => {
+
+        }).catch((error) => {
+          this.showAlert(error);
+        });
+
         this.navCtrl.setRoot(ProductsPage);
 
       }).catch((error) => {
-        console.log('Error '+ error.stack);
         
+        console.log('Error '+this.register.email);
+
         this.showAlert(error);
       });
-      
+
     }
     else {
       console.log(form.errors);

@@ -27,7 +27,7 @@ export class ProductsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public productDetails: ProductData, public db: AngularFireDatabase ) {
     this._productSubsciption = this.db.list('/product').subscribe((data) => {
       this.productDatas = data;
-      console.log('data is '+ this.productDatas);
+      //console.log('data is '+ this.productDatas);
     });
 
     

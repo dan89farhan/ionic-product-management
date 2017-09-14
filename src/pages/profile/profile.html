@@ -14,5 +14,79 @@
 
 
 <ion-content padding>
-  Project is in working.
+  <form [formGroup] = 'profForm' name="profForm">
+    <ion-list >
+
+      <ion-item>
+        <ion-label floating>First Name</ion-label>
+        <ion-input formControlName = 'ctrlfirstName' required type="text" [value]=profile.firstName></ion-input>
+      </ion-item>
+
+
+      <div padding-left ion-text class='form-text error' color = 'danger' *ngIf="(!((profForm.controls.ctrlfirstName.touched && profForm.controls.ctrlfirstName.valid) || submitted == false))">
+        Please enter your name
+      </div>
+
+
+      <!-- <p ion-text [hidden] = 'firstName.valid || submitted == false' color="danger" padding-left>Please enter your Name</p> -->
+
+      
+
+      <ion-item>
+        <ion-label floating>Last Name</ion-label>
+        <ion-input formControlName = 'ctrllastName' required type="text" [value]='profile.lastName'></ion-input>
+      </ion-item>
+
+      <div padding-left ion-text class='form-text error' color = 'danger' *ngIf="( !((profForm.controls.ctrllastName.touched && profForm.controls.ctrllastName.valid) || submitted == false))">
+        Please enter your last Name
+      </div>
+
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input formControlName = 'ctrlpassword' required type="password" [value]='profile.password'></ion-input>
+      </ion-item>
+
+      <div padding-left ion-text class='form-text error' color = 'danger' *ngIf="(!((profForm.controls.ctrlpassword.touched && profForm.controls.ctrlpassword.valid) || submitted == false))">
+        password should be 6 character minimum
+      </div>
+
+
+      
+      <!-- <p>7303651712 {{ profForm.hasError[mismatchedPasswords] }}</p> -->
+
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input formControlName = 'ctrlemail' required type="email" [value]='profile.email'></ion-input>
+      </ion-item>
+
+      <!-- <div padding-left ion-text class='form-text error' color = 'danger' *ngIf="(!((profForm.controls.ctrlemail.touched && profForm.controls.ctrlemail.valid) || submitted == false))">
+        Email is invalid!
+      </div> -->
+
+     
+      <ion-item padding-left>
+        <ion-label floating>Mobile</ion-label>
+        <ion-input formControlName = 'ctrlmobile' required type="number" [value]='profile.mobile'></ion-input>
+      </ion-item>
+
+      <div padding-left ion-text class='form-text error' color = 'danger' *ngIf="(!((profForm.controls.ctrlmobile.touched && profForm.controls.ctrlmobile.valid) || submitted == false))">
+        Mobile should be 10 digits and numeric
+      </div>
+
+
+      
+      <div class="text-center mt-20">
+        <button ion-button icon-start (click) = 'onChangeInfo(profForm)' type="submit" block>
+        <ion-icon name="person-add"></ion-icon>
+        Change Profile Info
+      </button>
+      </div>
+    </ion-list>
+  </form>
 </ion-content>
+
+<ion-footer>
+  <div class="center">
+    <button ion-button color='primary' (click) = 'logOut()' >sign out</button>
+  </div>
+</ion-footer>

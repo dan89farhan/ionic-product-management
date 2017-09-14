@@ -1,3 +1,4 @@
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -19,12 +20,24 @@ export class TestPage {
 
   messages:object[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public db: AngularFireDatabase) {
     
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TestPage');
+    this.db.object('/userInfo/h' ).set({
+      
+      name: 'farhan'
+
+
+
+    }).then(() => {
+
+    }).catch((error) => {
+      
+    });
+
   }
 
 }

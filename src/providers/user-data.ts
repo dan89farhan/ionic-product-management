@@ -9,14 +9,15 @@ import { Injectable } from '@angular/core';
 export class UserData {
     HAS_LOGGED_IN = 'hasLoggedIn';
     HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
-    USER_DETAILS = 'userDetails';
+    
     userDetails: UserOptions = {mobile: '', password: '', email: '', firstName: '', lastName: '' };
     constructor(public events: Events, public storage: Storage) {
 
     }
 
-    login(): void {
+    login(email: string): void {
         this.storage.set(this.HAS_LOGGED_IN, true);
+        this.setemail(email);
         //this.events.publish('user:login');
     };
 
@@ -25,17 +26,13 @@ export class UserData {
         this.storage.set('email', email);
     };
 
-    setUserDetails(userOption: UserOptions){
-        this.storage.set(this.USER_DETAILS, userOption);
-    }
+    
 
-    signup(userOption: UserOptions): void {
-        console.log(userOption.email+' this is email');
+    signup(email: string): void {
+        console.log(email+' this is email');
         this.storage.set(this.HAS_LOGGED_IN, true);
-        
-        
-        this.setUserDetails(userOption);
         //this.events.publish('user:signup');
+        this.setemail(email);
     };
 
     getemail(): Promise<string> {
@@ -57,6 +54,13 @@ export class UserData {
 
     checkHasLogin(){
         return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
+            return value;
+        });
+    }
+
+    logOut(): Promise<boolean>{
+        return this.storage.set(this.HAS_LOGGED_IN, false).then((value) => {
+            console.log(value, "this is in logOut");
             return value;
         });
     }

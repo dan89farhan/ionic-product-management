@@ -47,9 +47,11 @@ export class LoginPage {
     this.submitted = true;
     if(form.valid){
       
+      
+
       this.fire.auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((data) => {
         this.navCtrl.setRoot(ProductsPage);
-        this.userData.login();
+        this.userData.login(this.login.email);
       }).catch((error) => {
         this.showAlert("It seems that you don't have account to use this Application\nPlease Register first");
         console.log('Got an '+error);
