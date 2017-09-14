@@ -13,23 +13,8 @@ export class AddressData{
         
     }
 
-    setAddress(address: string, city: string, state: string, zipcode: number, country: string){
-        this.storage.set(this.HAS_FILLED_ADDRESS, true);
-        this.addressOptions.address = address;
-        this.addressOptions.city = city;
-        this.addressOptions.country = country;
-        this.addressOptions.state = state;
-        this.addressOptions.zipcode = zipcode;
-        var obj = JSON.stringify(this.addressOptions);
-        
-        this.storage.set('addressStrored', obj).then((value) => {
-            console.log('successful stored');
-            
-        }).catch((error) =>{
-            console.log(error+' is the error');
-            
-        });
-
+    setAddress(value: boolean){
+        this.storage.set(this.HAS_FILLED_ADDRESS, value);
     }
 
     checkAddressFilled(): Promise<boolean>{

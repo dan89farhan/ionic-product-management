@@ -53,9 +53,8 @@ export class ProfilePage {
     
     var email = this.userData.getemail();
     email.then((value) => {
-      var val = value.replace('.', '_');
-      this.item = this.db.object('/userInfo/'+ val);
-      this._userSubcription = this.db.object('/userInfo/'+ val, { preserveSnapshot: true }).subscribe(
+      this.item = this.db.object('/userInfo/'+ value);
+      this._userSubcription = this.db.object('/userInfo/'+ value, { preserveSnapshot: true }).subscribe(
 
         (data) => {
           this.profile = data.val();

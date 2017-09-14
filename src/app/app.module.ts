@@ -64,7 +64,7 @@ const fireBaseAuth = {
           component: TestPage, name: 'TestPage', segment:'test-page'
         },
         {
-          component: ProductsPage, name: 'ProductPage', segment: 'product-page'
+          component: ProductsPage, name: 'ProductsPage', segment: 'products-page'
         },
         {
           component: AddressPage, name: 'AddressPage', segment: 'address-page'

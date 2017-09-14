@@ -23,6 +23,7 @@ export class UserData {
 
 
     setemail(email: string): void {
+        email = email.replace('.', '_');
         this.storage.set('email', email);
     };
 
