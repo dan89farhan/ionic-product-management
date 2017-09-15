@@ -1,3 +1,4 @@
+import { ProductsPage } from './../products/products';
 import { UserData } from './../../providers/user-data';
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import { AddressOptions } from './../../interfaces/address-options';
@@ -23,9 +24,8 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
   templateUrl: 'address.html',
 })
 export class AddressPage {
-  public registrationForm: any;
 
-  addressdetails: AddressOptions = {address: 'asd', city: '', state: '', zipcode: 0, country: ''};
+  addressdetails: AddressOptions = {address: '', city: '', state: '', zipcode: 0, country: ''};
   submitted = false;
   addForm: FormGroup;
 
@@ -51,13 +51,16 @@ export class AddressPage {
       
     );
 
-    this.userData.getemail().then((value) => {
-      this.addressObj = this.db.object('/userAdrress/'+ value);
-      this.db.object('/userAdrress/'+ value, { preserveSnapshot: true }).subscribe((data) => {
-        //this.info = data.val();
+    var email = this.userData.getemail();
+    email.then((value) => {
+      this.db.object('/userAddress/'+value, { preserveSnapshot: true }).subscribe((datas) => {
+
+        this.addressdetails = datas.val();
+        console.log(this.addressdetails);
         
-      })
-    })
+      });
+      
+    });
   }
 
 
@@ -79,27 +82,28 @@ export class AddressPage {
     console.log('in onAddress');
     this.submitted = true;
     if (form.valid) {
-      console.log(this.addForm.controls['ctrlcity'].value);
-      // this.info.address = this.addForm.controls['ctrladdress'].value;
-      // this.info.city = this.addForm.controls['ctrlcity'].value
-      // this.info.state = this.addForm.controls['ctrlstate'].value
-      // this.info.zipcode = this.addForm.controls['ctrlzipcode'].value
-      // this.info.country = this.addForm.controls['ctrlcountry'].value
-      // this.addressData.setAddress(true);
+      // console.log(this.addForm.controls['ctrlcity'].value);
+      this.addressdetails.address = this.addForm.controls['ctrladdress'].value;
+      this.addressdetails.city = this.addForm.controls['ctrlcity'].value
+      this.addressdetails.state = this.addForm.controls['ctrlstate'].value
+      this.addressdetails.zipcode = this.addForm.controls['ctrlzipcode'].value
+      this.addressdetails.country = this.addForm.controls['ctrlcountry'].value
+      this.addressData.setAddress(true);
 
       this.userData.getemail().then((value) => {
         this.email = value;
 
         this.db.object('/userAddress/'+this.email).set({
-          // address: this.info.address,
-          // city: this.info.city,
-          // state: this.info.state,
-          // zipcode: this.info.zipcode,
-          // country: this.info.country
+          address: this.addressdetails.address,
+          city: this.addressdetails.city,
+          state: this.addressdetails.state,
+          zipcode: this.addressdetails.zipcode,
+          country: this.addressdetails.country
+          
         }).then((data) => {
           console.log("Successfully inserted the data ", data);
           this.showToast("Thank you! your order will be deliver in next 2 days.");
-          this.navCtrl.first();
+          this.navCtrl.setRoot(ProductsPage);
         }).catch((error) => {
           this.showToast(error+'');
         });

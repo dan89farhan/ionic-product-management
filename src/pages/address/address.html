@@ -29,7 +29,7 @@
 
       <ion-item>
         <ion-label floating>City</ion-label>
-        <ion-input formControlName='ctrlcity' required type="text" value='addressdetails.city'></ion-input>
+        <ion-input formControlName='ctrlcity' required type="text" [value]='addressdetails.city'></ion-input>
       </ion-item>
 
       <div padding-left ion-text class='form-text error' color='danger' *ngIf="( !((addForm.controls.ctrlcity.touched && addForm.controls.ctrlcity.valid) || submitted == false))">
@@ -38,7 +38,7 @@
 
       <ion-item>
         <ion-label floating>State</ion-label>
-        <ion-input formControlName='ctrlstate' required type="text" value='addressdetails.state'></ion-input>
+        <ion-input formControlName='ctrlstate' required type="text" [value]='addressdetails.state'></ion-input>
       </ion-item>
 
       <div padding-left ion-text class='form-text error' color='danger' *ngIf="(!((addForm.controls.ctrlstate.touched && addForm.controls.ctrlstate.valid) || submitted == false))">
@@ -51,7 +51,7 @@
 
       <ion-item>
         <ion-label floating>Zip Code</ion-label>
-        <ion-input formControlName='ctrlzipcode' required type="number" value='addressdetails.zipcode'></ion-input>
+        <ion-input formControlName='ctrlzipcode' required type="number" [value]='addressdetails.zipcode'></ion-input>
       </ion-item>
 
       <div padding-left ion-text class='form-text error' color='danger' *ngIf="(!((addForm.controls.ctrlzipcode.touched && addForm.controls.ctrlzipcode.valid) || submitted == false))">
@@ -61,7 +61,7 @@
 
       <ion-item padding-left>
         <ion-label floating>Country</ion-label>
-        <ion-input formControlName='ctrlcountry' required type="text" value='addressdetails.country'></ion-input>
+        <ion-input formControlName='ctrlcountry' required type="text" [value]='addressdetails.country'></ion-input>
       </ion-item>
 
       <div padding-left ion-text class='form-text error' color='danger' *ngIf="(!((addForm.controls.ctrlcountry.touched && addForm.controls.ctrlcountry.valid) || submitted == false))">
