@@ -33,16 +33,16 @@
             Cost 
           </ion-col>
         </ion-row>
-        <ion-row *ngFor = "let product of productCart.products; ">
-          <ion-col col-5> {{ product.title }} </ion-col>
+        <ion-row >
+          <ion-col col-5> {{ productCart.title }} </ion-col>
           <ion-col col-3>
-            {{ product.qty }}
+            {{ productCart.qty }}
           </ion-col>
           <ion-col col-2>
-            {{ product.price }}
+            {{ productCart.price }}
           </ion-col>
           <ion-col col-2>
-            {{ product.cost }} 
+            {{ productCart.cost }} 
           </ion-col>
         </ion-row>
       </ion-grid>

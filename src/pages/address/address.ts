@@ -55,12 +55,22 @@ export class AddressPage {
     email.then((value) => {
       this.db.object('/userAddress/'+value, { preserveSnapshot: true }).subscribe((datas) => {
 
-        this.addressdetails = datas.val();
-        console.log(this.addressdetails);
+        console.log("Value of data ",datas);
+        
+        if(datas.val() != null){
+          this.addressdetails = datas.val();
+          console.log("Address details ", this.addressdetails);
+        }
+        
+          
         
       });
       
     });
+  }
+
+  ionViewWillLeave(){
+    this.navCtrl.setRoot(ProductsPage);
   }
 
 
@@ -109,7 +119,7 @@ export class AddressPage {
         });
 
       });
-
+      
       //console.log('email is ', this.email);
       
 
