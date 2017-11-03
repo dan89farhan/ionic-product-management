@@ -26,12 +26,15 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 const fireBaseAuth = {
-  apiKey: "AIzaSyC3eJ2X2_UTYkxaopXWb9VDTPyNDlI7t7Y",
-  authDomain: "productmanagement-78166.firebaseapp.com",
-  databaseURL: "https://productmanagement-78166.firebaseio.com",
-  projectId: "productmanagement-78166",
-  storageBucket: "productmanagement-78166.appspot.com",
-  messagingSenderId: "929512610217"
+  
+    apiKey: "AIzaSyC3eJ2X2_UTYkxaopXWb9VDTPyNDlI7t7Y",
+    authDomain: "productmanagement-78166.firebaseapp.com",
+    databaseURL: "https://productmanagement-78166.firebaseio.com",
+    projectId: "productmanagement-78166",
+    storageBucket: "productmanagement-78166.appspot.com",
+    messagingSenderId: "929512610217"
+
+  
 };
 
 @NgModule({
