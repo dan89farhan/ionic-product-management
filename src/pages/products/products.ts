@@ -29,11 +29,18 @@ export class ProductsPage {
   productDatas: object[] = [];
   _productSubsciption;
 
+  quantity: any[] = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public productDetails: ProductData, public db: AngularFireDatabase, private userData: UserData ) {
     this._productSubsciption = this.db.list('/product').subscribe((data) => {
       this.productDatas = data;
+      for (var index = 0; index < this.productDatas.length; index++) {
+        
+        this.quantity.push(0);
+        
+      }
       
-      //console.log('data is '+ this.productDatas);
+      // console.log('data is '+ this.productDatas);
     });
     this.userData.getemail().then((value) => {
       this.db.list('/userReport/' + value).subscribe((data)=> {
@@ -55,15 +62,21 @@ export class ProductsPage {
   
 
   increament(index){
-    if(this.productDatas[index]['quantity']<10){
-      this.productDatas[index]['quantity']++;
+    
+    
+    if(this.productDatas[index]['quantity']>this.quantity[index]){
+      // this.productDatas[index]['quantity']++;
+      this.quantity[index]++;
+      
+      
     }
 
   }
 
   decrement(index){
-    if(this.productDatas[index]['quantity']>1){
-      this.productDatas[index]['quantity']--;
+    if(this.quantity[index]>1){
+      // this.productDatas[index]['quantity']--;
+      this.quantity[index]--;
     }
   }
   
