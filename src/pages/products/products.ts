@@ -113,6 +113,8 @@ export class ProductsPage {
       }).catch(( error ) => {
         console.log("Error ", error);
       });
+
+      
   
       this.navCtrl.push(AddressPage, this.productOptions);
 
